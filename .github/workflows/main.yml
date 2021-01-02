@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-  - cron: "0 16,01 * * *"
+  - cron: "0 16,11 * * *"
 
 jobs:
   build:
@@ -13,9 +13,7 @@ jobs:
         token: ${{ secrets.GIT_TOKEN }}
     - name: check
       run: |
-        
         echo "stfuanu" | tee -a new.txt
-        
     - name: Commit test.txt
       run: |
         git config --local user.email "action@github.com"
