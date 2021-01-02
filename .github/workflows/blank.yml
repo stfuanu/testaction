@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  schedule:
+  - cron: "0 15,59 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        token: ${{ secrets.GIT_TOKEN }}
+    - name: check
+      run: |
+        
+        echo "stfuanu" | tee -a new.txt
+        
+    - name: Commit test.txt
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add new.txt
+        git commit -m "Update new.txt" -a
+        git push "https://stfuanu:${{ secrets.GIT_TOKEN }}@github.com/stfuanu/testaction.git" HEAD:master --follow-tags
